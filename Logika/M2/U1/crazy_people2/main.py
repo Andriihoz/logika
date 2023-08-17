@@ -1,11 +1,22 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout,QRadioButton, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout,QRadioButton, QHBoxLayout, QMessageBox
 
 
 app = QApplication([])
 main_window = QWidget()
 
 Labale = QLabel('коли була створена перша машина?')
+
+
+def lose():
+    b = QMessageBox()
+    b.setText('не правильно')
+    b.exec_()
+
+def win():
+    b = QMessageBox()
+    b.setText('Правильно')
+    b.exec_()
 
 radio_btn1 = QRadioButton('1887')
 radio_btn2 = QRadioButton('1873')
