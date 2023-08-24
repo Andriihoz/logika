@@ -20,5 +20,6 @@ win_card.resize(card_width, card_height)
 
 #тут повинні бути параметри вікна
 
+win_card.setLayout(layout_card)
 win_card.show()
 app.exec_()
