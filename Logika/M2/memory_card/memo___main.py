@@ -28,18 +28,23 @@ frm_card = 0  # тут буде зв'язуватися питання з фор
 timer = QTimer()
 win_main = QWidget()
 win_card = QWidget()
+win_main.setStyleSheet('''
+                   background-color: black;
+                      color: white;
+                      font-size: 20px;     
+                        ''')
 
 
 # Тестові данні
 def testlist():
 
-    frm = Question('Яблуко', 'apple', 'application', 'pinapple', 'apply')
+    frm = Question('Машина', 'car', 'cars', 'care', 'cat')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Дім', 'house', 'horse', 'hurry', 'hour')
+    frm = Question('Гітара', 'guitar', 'guide', 'guitars', 'guitarist')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Мишка', 'mouse', 'mouth', 'muse', 'museum')
+    frm = Question('Ведмідь', 'bear', 'beard', 'bears', 'bread')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Число', 'number', 'digit', 'amount', 'summary')
+    frm = Question('Мотоцикл', 'motorcycle', 'bike', 'motor', 'motors')
     questions_listmodel.form_list.append(frm)
 
 # Функції для проведення тесту
