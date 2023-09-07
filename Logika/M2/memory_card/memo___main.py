@@ -28,11 +28,20 @@ frm_card = 0  # тут буде зв'язуватися питання з фор
 timer = QTimer()
 win_main = QWidget()
 win_card = QWidget()
-win_main.setStyleSheet('''
-                   background-color: black;
+win_card.setStyleSheet('''
+                    background-color: purple;
                       color: white;
-                      font-size: 20px;     
+                      font-size: 20px;
+                       border: 2px solid cyan;
                         ''')
+win_main.setStyleSheet('''
+                   background-color: purple;
+                      color: white;
+                      font-size: 20px;
+                       border: 2px solid cyan;     
+                        ''')
+
+
 
 
 # Тестові данні
