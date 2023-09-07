@@ -41,7 +41,7 @@ win_main.setStyleSheet('''
                        border: 2px solid cyan;     
                         ''')
 
-
+lb_Result.setStyleSheet('margin: 20px')
 
 
 # Тестові данні
