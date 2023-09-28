@@ -6,6 +6,9 @@ from PyQt5.QtWidgets import (
     QFormLayout, QGroupBox, QButtonGroup, QRadioButton, QSpinBox)
 import json
 
+def writeToFile():
+    with open('note.json','w',encoding='utf8')as file:
+        json.dump(note,file,ensure_ascii=False,sort_keys=True,ident=4)
 
 app = QApplication([])
 window = QWidget()
@@ -21,7 +24,7 @@ btn_creat = QPushButton('Створити замітку')
 btn_delete = QPushButton('Видалити замітку')
 btn_save = QPushButton('Зберегти замітку')
 
-lb_tags = QLabel('Спмсрк тегів')
+lb_tags = QLabel('Список тегів')
 lst_tags = QListWidget()
 
 btn_add = QPushButton('Додати до замітки')
@@ -32,8 +35,8 @@ layout_notes = QHBoxLayout()
 col1 = QVBoxLayout()
 col2 = QVBoxLayout()
 
-layout_notes.addLayout(col1)
-layout_notes.addLayout(col2)
+layout_notes.addLayout(col1, stretch=2)
+layout_notes.addLayout(col2, stretch=1)
 
 col1.addWidget(field_text)
 col2.addWidget(lb_notes)
@@ -44,12 +47,51 @@ row1.addWidget(btn_creat)
 row1.addWidget(btn_delete)
 
 col2.addLayout(row1)
+col2.addWidget(btn_save)
+
+col2.addWidget(lb_tags)
+
 
 with open('note.json','r',encoding = 'utf-8')as file:
     note = json.load(file)
 
-lst_notes.addItems(note)
+def show_note():
+    key = lst_notes.currentItem().text()
+    field_text.setText(note[key]['текст'])
+    
+    lst_tags.clear()
+    lst_tags.addItem(note[key]['теги'])
 
+def add_note():
+    note_name,ok = QInputDialog.getText(window,'Додати замітку','Назва замітки')
+
+    if note_name and ok:
+        note[note_name] = {'текст': '', 'теги': []}
+        lst_notes.addItem(note_name)
+
+def save_note():
+    key = lst_notes.currentItem().text()
+    note[key]['текст'] = field_text.toPlainText()
+
+def del_note():
+    if lst_notes.currentItem():
+        key = lst_notes.currentItem().text()
+        del note[key]
+
+        field_text.clear()
+        lst_tags.clear()
+        lst_notes.clear()
+
+        lst_notes.addItem(note)
+        writeToFile()
+
+lst_notes.itemClicked.connect(show_note)
+
+btn_creat.clicked.connect(add_note)
+btn_unfasten.clicked.connect(add_note)
+
+
+lst_notes.addItems(note)
 window.setLayout(layout_notes)
 window.show()
 app.exec_()
