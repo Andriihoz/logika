@@ -50,10 +50,22 @@ col2.addLayout(row1)
 col2.addWidget(btn_save)
 
 col2.addWidget(lb_tags)
+col2.addWidget(lst_tags)
 
+row2 = QHBoxLayout()
+row2.addWidget(btn_add)
+row2.addWidget(btn_unfasten)
+
+col2.addLayout(row2)
+col2.addWidget(btn_search)
+
+col2.addWidget(btn_add)
+col2.addWidget(btn_unfasten)
 
 with open('note.json','r',encoding = 'utf-8')as file:
     note = json.load(file)
+
+
 
 def show_note():
     key = lst_notes.currentItem().text()
