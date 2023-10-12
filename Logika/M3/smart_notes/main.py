@@ -27,6 +27,7 @@ btn_save = QPushButton('Зберегти замітку')
 lb_tags = QLabel('Список тегів')
 lst_tags = QListWidget()
 field_tag = QLineEdit()
+
 btn_add = QPushButton('Додати до замітки')
 btn_unfasten = QPushButton('Відкріпити від замітки')
 btn_search = QPushButton('Шукати замітки за тегом')
@@ -81,9 +82,11 @@ def add_note():
         lst_notes.addItem(note_name)
 
 def save_note():
-    key = lst_notes.currentItem().text()
-    note[key]['текст'] = field_text.toPlainText()
-    writeToFile()
+    if lst_notes.currentItem():
+        key = lst_notes.currentItem().text()
+        note[key]['текст'] = field_text.toPlainText()
+        
+        writeToFile()
 
 def del_note():
     if lst_notes.currentItem():
@@ -99,8 +102,9 @@ def del_note():
 
 
 def add_tag():
-    key = lst_notes.currentItem().text()
-    tag = field_tag.text()
+    if lst_notes.currentItem():
+        key = lst_notes.currentItem().text()
+        tag = field_tag.text()
 
     note[key]['теги'].append(tag)
     
