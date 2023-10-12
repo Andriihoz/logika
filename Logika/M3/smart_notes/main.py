@@ -153,12 +153,10 @@ def search_tag():
 btn_add.clicked.connect(add_tag)
 btn_unfasten.clicked.connect(del_tag)
 btn_search.clicked.connect(search_tag)
-
 lst_notes.itemClicked.connect(show_note)
-
 btn_creat.clicked.connect(add_note)
-btn_unfasten.clicked.connect(add_note)
-
+btn_delete.clicked.connect(del_note)
+btn_save.clicked.connect(save_note)
 
 lst_notes.addItems(note)
 window.setLayout(layout_notes)
