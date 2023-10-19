@@ -1,14 +1,14 @@
-from PIL import Image, ImageFilter,
+from PIL import Image, ImageFilter
 
 class ImageEditor():
-    def __init__ (self,filename)
+    def __init__ (self,filename):
         self.filename = filename
         self.original = None
         self.changed = []
 
     def open (self):
         try:
-            self.original = Image.open('')
+            self.original = Image.open('ryan_gosling.JPEG')
             self.original.show()
         except:
             print('Файлу не знайдено')
@@ -24,7 +24,7 @@ class ImageEditor():
         
         self.changed.append(cropped)
         cropped.save('cropped_'+self.filename)
-img = ImageEditor('')
+img = ImageEditor('ryan_gosling.JPEG')
 img.open()
 
 img.do_left()
