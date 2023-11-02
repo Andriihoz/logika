@@ -85,15 +85,31 @@ class imageProcessor():
         
         pic.setPixmap(pixmapimage)
         pic.show()
-def saveAndShowImage(self):
-    path = os.path.join(workdir,self.save_dir)
+    def saveAndShowImage(self):
+        path = os.path.join(workdir,self.save_dir)
 
-    if not (os.path.exists(path) or os.path.insdir(path)):
-        os.mkdir(path)
+        if not (os.path.exists(path) or os.path.isdir(path)):
+            os.mkdir(path)
 
-    image_path = os.path.join(path,self.filename) 
-    self.original.save(image_path)
-    self.showImage(image_path)
+        image_path = os.path.join(path,self.filename) 
+        self.original.save(image_path)
+        self.showImage(image_path)
+
+    def btn_BW(self):
+        self.original = self.original.convert('L')
+        self.saveAndShowImage()
+    def btn_sharpness(self):
+        self.original = self.original.filter(ImageFilter.SHARPEN)
+        self.saveAndShowImage()
+    def btn_left(self):
+        self.original = self.original.transpose(Image.ROTATE_90)
+        self.saveAndShowImage()
+    def btn_right(self):
+        self.original = self.original.transpose(Image.ROTATE_270)
+        self.saveAndShowImage()
+    def btn_flip(self):
+        self.original = self.original.transpose(Image.FLIP_LEFT_RIGHT)
+        self.saveAndShowImage()
 
 def showChosenItem():
     filename = lst_files.currentItem().text()
@@ -101,12 +117,18 @@ def showChosenItem():
     full_path = os.path.join(workdir,filename)
     workImage.showImage(full_path)
 
-workImage = imageProcessor
+workImage = imageProcessor()
 
-lst_files.currentRowChanged.connect(showChosenItem)
-
+lst_files.itemClicked.connect(showChosenItem)
 btn_folder.clicked.connect(showFiles)
 
+btn_BW.clicked.connect(workImage.btn_BW)
+btn_left.clicked.connect(workImage.btn_left)
+btn_right.clicked.connect(workImage.btn_right)
+btn_mirror.clicked.connect(workImage.btn_flip)
+btn_sharpness.clicked.connect(workImage.btn_sharpness)
+
+window.resize(900,600)
 window.setLayout(layout_editor)
 window.show()
 app.exec_()

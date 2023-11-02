@@ -8,7 +8,7 @@ class ImageEditor():
 
     def open (self):
         try:
-            self.original = Image.open('ryan_gosling.JPEG')
+            self.original = Image.open(self.filename)
             self.original.show()
         except:
             print('Файлу не знайдено')
@@ -24,7 +24,6 @@ class ImageEditor():
         
         self.changed.append(cropped)
         cropped.save('cropped_'+self.filename)
-img = ImageEditor('ryan_gosling.JPEG')
+img = ImageEditor('ryan_gosling.jpeg')
 img.open()
 
-img.do_left()

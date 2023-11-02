@@ -119,8 +119,8 @@ def del_tag():
     tag = lst_tags.currentItem().text()
 
     note[key]['теги'].remove(tag)
-
-    lst_tags.addItem(note[key]['теги'])
+    lst_tags.clear()
+    lst_tags.addItems(note[key]['теги'])
     field_tag.clear()
 
     writeToFile()
