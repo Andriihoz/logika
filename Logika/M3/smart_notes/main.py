@@ -97,7 +97,7 @@ def del_note():
         lst_tags.clear()
         lst_notes.clear()
 
-        lst_notes.addItem(note)
+        lst_notes.addItems(note)
         writeToFile()
 
 
