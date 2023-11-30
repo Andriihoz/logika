@@ -53,3 +53,5 @@ while game:
     if keys_pressed[K_s] and y2 < 395:
         y2 += SPEED
     display.update()
+
+

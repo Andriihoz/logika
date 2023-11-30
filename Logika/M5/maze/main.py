@@ -1,0 +1,1 @@
+window = display.set_
