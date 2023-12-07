@@ -57,6 +57,10 @@ class Wall(sprite.Sprite):
         self.rect.x = wall_x
         self.rect.y = wall_y
 
+wall1 = Wall(100, 100, 20, 150)
+wall2 = Wall(300, 200, 20, 150)
+wall3 = Wall(500, 300, 20, 150)
+
 window_width = 700
 window_height = 500
 window = display.set_mode((window_width,window_height))
@@ -71,8 +75,14 @@ finish = False
 clock = time.Clock()
 FPS = 60
 
+mixer.init()
 money_sound = mixer.Sound('money.ogg')
 kick_sound = mixer.Sound('kick.ogg')
+
+font.init()
+f =font.Font(None, 70)
+win = f.render("You win!", True, (255,215,0))
+lose = f.render("You lose!", True, (255,0,0))
 
 while game:
     for e in event.get():
@@ -82,14 +92,14 @@ while game:
         window.blit(background,(0,0))
         player.reset()
         monster.reset()
-        treasure.reset()
+        final.reset()
     
-        if sprite.collide_rect(player, treasure):
+        if sprite.collide_rect(player, final):
             finish = True
             window.blit(win,(200,200))
             money_sound.play()
         
-        if sprite.collide_rect(player, ):
+        if sprite.collide_rect(player,wall1,wall2,wall3):
             finish = True
             window.blit(lose,(200,200))
             kick_sound.play()
