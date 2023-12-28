@@ -59,6 +59,9 @@ font.init()
 
 font1 = font.SysFont('Arial',36)
 
+font2 = font.SysFont('Arial',80)
+txt_lose_game = font2.render('You lose!',True,(225,0,0))
+txt_win_game = font2.render('You Win!',True,(0,200,0))
 
 window_width = 700
 window_height = 500
@@ -103,5 +106,35 @@ while game:
 
         ship.reset()
         ship.update()
+
+        if sprite.spritecollide(ship,monster,False):
+            finish = True
+            window.blit(txt_lose_game,(175,200))
+
+        collides = sprite.groupcollide(monster,bullets,True,True)
+        for i in collides:
+            mon = Enemy('ufo.png',randint(0,window_width-80),0,80,50,randint(1,5))
+            monster.add(mon)
+            score = score + 1
+
+            if score == 5:
+                finish = True
+                window.blit(txt_win_game,(200,200))
+    else:
+        finish = False
+        score = 0
+        lost = 0
+
+        for b in bullets:
+            b.kill()
+        for m in monster:
+            m.kill()
+
+        time.delay(3000)
+        for i in range(5):
+            mon = Enemy('ufo.png',randint(0,window_width-80),0,80,50,randint(1,5))
+            monster.add(mon)
+
+
     display.update()
     clock.tick(FPS)
