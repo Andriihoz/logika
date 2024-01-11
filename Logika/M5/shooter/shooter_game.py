@@ -48,12 +48,12 @@ class Bullet(GameSprite):
         if self.rect.y < 0 :
             self.kill()
 
-b1 = ('bullet.png',350,350,15,20,15)
+b = ('bullet.png',350,350,15,20,15)
 
 mixer.init()
 mixer.music.load('space.ogg')
 mixer.music.play(-1)
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 font.init()
 
@@ -68,13 +68,13 @@ window_height = 500
 window = display.set_mode((window_width,window_height))
 background = scale(load('galaxy.jpg'),(window_width,window_height))
 
-ship = Player('rocket.png',5,window_height-110,80,100,6)
+ship = Player('rocket2.png',5,window_height-110,80,100,6)
 
 bullets = sprite.Group()
 
 monster = sprite.Group()
 for i in range(5):
-    mon = Enemy('ufo.png',randint(0,window_width-80),0,80,50,randint(1,5))
+    mon = Enemy('ufo2.png',randint(0,window_width-80),0,80,50,randint(1,5))
     monster.add(mon)
 
 
@@ -113,7 +113,7 @@ while game:
 
         collides = sprite.groupcollide(monster,bullets,True,True)
         for i in collides:
-            mon = Enemy('ufo.png',randint(0,window_width-80),0,80,50,randint(1,5))
+            mon = Enemy('ufo2.png',randint(0,window_width-80),0,80,50,randint(1,5))
             monster.add(mon)
             score = score + 1
 
@@ -132,7 +132,7 @@ while game:
 
         time.delay(3000)
         for i in range(5):
-            mon = Enemy('ufo.png',randint(0,window_width-80),0,80,50,randint(1,5))
+            mon = Enemy('ufo2.png',randint(0,window_width-80),0,80,50,randint(1,5))
             monster.add(mon)
 
 
